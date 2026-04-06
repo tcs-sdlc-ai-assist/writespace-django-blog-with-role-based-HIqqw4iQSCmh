@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "writespace/wsgi.py",
+      "src": "writespace/writespace/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -12,14 +12,13 @@
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "writespace/wsgi.py"
+      "dest": "writespace/writespace/wsgi.py"
     }
   ],
-  "buildCommand": "bash build_files.sh",
-  "outputDirectory": ""
+  "build": {
+    "env": {
+      "PYTHON_VERSION": "3.12"
+    }
+  }
 }
